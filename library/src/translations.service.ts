@@ -31,7 +31,7 @@ export class TranslationsService {
         );
 
         // Check if the languages are all correct if the application is not in production mode.
-        if (!config.production && !this.validate()) {
+        if (!this.config.production && !this.validate()) {
             console.warn('The language files have been compared and they have not passed the validation.');
         }
 
