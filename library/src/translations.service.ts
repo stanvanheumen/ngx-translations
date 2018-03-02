@@ -22,7 +22,7 @@ export class TranslationsService {
                 @Optional() private config: TranslationsConfig) {
         // Retrieve the dictionary from the config.
         if (!this.config) {
-            throw new Error('No configuration was passed to the NgxTranslationsModule; Something went wrong.');
+            this.config = {production: false, dictionary: []};
         }
 
         // Append the dictionary to the default dictionary.
