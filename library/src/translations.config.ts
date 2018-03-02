@@ -1,9 +1,9 @@
 export class TranslationsConfig {
     production: boolean = false;
-    dictionary: Translation[] = [];
+    dictionary: Dictionary[] = [];
 }
 
-export interface Translation {
+export interface Dictionary {
 
     /**
      * The browser languages that should activate this data set.
@@ -22,10 +22,24 @@ export interface Translation {
 
 }
 
+export interface Translation {
+
+    /**
+     * The token of the translation.
+     */
+    token: string;
+
+    /**
+     * The key-value extras.
+     */
+    data: TranslationExtras;
+
+}
+
 export interface TranslationExtras {
 
     /**
-     * The key-value translation extras.
+     * The key-value extras.
      */
     [token: string]: string;
 

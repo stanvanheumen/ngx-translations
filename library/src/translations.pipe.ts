@@ -1,6 +1,6 @@
+import {Translation, TranslationExtras} from './translations.config';
 import {Optional, Pipe, PipeTransform} from '@angular/core';
 import {TranslationsService} from './translations.service';
-import {TranslationExtras} from './translations.config';
 
 @Pipe({
     name: 'translate',
@@ -11,7 +11,7 @@ export class NgxTranslationsPipe implements PipeTransform {
     constructor(@Optional() private translate: TranslationsService) {
     }
 
-    transform(value: string, args: TranslationExtras = {}) {
+    transform(value: string | Translation, args: TranslationExtras = {}) {
         // Check if the service was actually properly installed; if not return the value.
         if (!this.translate) {
             return value;
@@ -27,8 +27,12 @@ export class NgxTranslationsPipe implements PipeTransform {
             throw new Error('The arguments were not formatted properly.');
         }
 
+        if (typeof value === 'string') {
+            value = {token: value, data: args};
+        }
+
         // Translate the value.
-        return this.translate.instant(value, args);
+        return this.translate.instant(value);
     }
 
 }

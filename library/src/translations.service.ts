@@ -1,4 +1,4 @@
-import {TranslationExtras, TranslationsConfig} from './translations.config';
+import {Translation, TranslationsConfig} from './translations.config';
 import {StorageService} from '@stanvanheumen/ngx-storage';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Injectable, Optional} from '@angular/core';
@@ -66,13 +66,17 @@ export class TranslationsService {
         }
     }
 
-    instant(token: string, data: TranslationExtras = {}) {
-        return this.translate(token, data);
+    instant(data: string | Translation) {
+        return this.translate(data);
     }
 
-    translate(token: string, data: TranslationExtras = {}) {
+    translate(item: string | Translation) {
         // Retrieve the entire dictionary object.
         const dictionary = this.getLanguageDictionary(this.currentLanguage$.getValue());
+
+        // Get the token.
+        const token = typeof item === 'object' ? item.token : item;
+        const data = typeof item === 'object' ? item.data : {};
 
         // Get the sentence.
         let sentence = null;
