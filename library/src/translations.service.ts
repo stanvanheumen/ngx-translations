@@ -35,7 +35,7 @@ export class TranslationsService {
             console.warn('The language files have been compared and they have not passed the validation.');
         }
 
-        // If the storage is enabled than retrieve the current language.
+        // If the storage is enabled than retrieve the current language; else us an empty behavior subject.
         const language$ = this.storage ?
             this.storage.get<string>(this.storageToken) as BehaviorSubject<string>
             : new BehaviorSubject<string>(null);
@@ -49,6 +49,7 @@ export class TranslationsService {
     }
 
     use(language: string) {
+        // Check if the language is supported; if not set the default language and warn the user.
         if (!this.isLanguageSupported(language)) {
             language = this.defaultDictionary[0].languages[0];
             console.warn(
@@ -56,7 +57,10 @@ export class TranslationsService {
             );
         }
 
+        // Submit a new language.
         this.currentLanguage$.next(language);
+
+        // Save the new language in the storage if the storage exists.
         if (this.storage) {
             this.storage.set<string>(this.storageToken, language);
         }
@@ -74,28 +78,35 @@ export class TranslationsService {
         let sentence = null;
 
         // Check if the dictionary exists.
-        // If not exists the language must be the default (English).
         if (dictionary) {
             if (!dictionary[token]) {
+                // The key does not exist in the dictionary, so the user must be notified.
                 this.notify(`Key '${token}' was not found; ${token} was returned.`);
                 sentence = token;
             } else {
+                // The key does exist, so return it.
                 sentence = dictionary[token];
             }
         } else {
+            // The language is the default.
             sentence = token;
         }
 
         // Loop through each match to replace it with the supplied value.
         (sentence.match(/\${(.*?)}/g) || []).forEach(match => {
+            // Get the key without any other symbols.
             const key = match.replace(/[${} ]/g, '');
 
+            // Split the key on the pipe symbol to get the other arguments.
             const words = key.split('|');
             if (words.length <= 0 || words.length > 2) {
                 return;
             }
+
+            // Get the key.
             let word = words[0];
 
+            // Check if it should be translated (default is yes).
             if (data[word]) {
                 word = data[word];
 
@@ -104,6 +115,7 @@ export class TranslationsService {
                 }
             }
 
+            // Do the other attributes.
             if (words.length === 2) {
                 const actions = words[1].split(',');
 
@@ -164,6 +176,7 @@ export class TranslationsService {
             return language;
         }
 
+        // Get the correct first language of the browser.
         if (navigator.languages && navigator.languages.length) {
             language = navigator.languages[0];
         } else if (navigator['userLanguage']) {

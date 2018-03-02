@@ -11,19 +11,22 @@ A simple library that allows you use multiple languages in your Angular 5+ app.
 - :sheep: **Angular Universal compatible**
 - :bird: **Ahead-Of-Time compilation compatible**
 
+## Demo
+
+[Click here to play with the example](https://stackblitz.com/github/stanvanheumen/ngx-translations)
+
 ## Installation
 
 ```bash
-npm install @stanvanheumen/ngx-translations --save
+$ npm install @stanvanheumen/ngx-translations --save
 
 # or
 
-yarn add @stanvanheumen/ngx-translations
+$ yarn add @stanvanheumen/ngx-translations
 ```
 
-If you want to add the saving functionality to current language (so that your user 
-can change the language runtime) you should add the `@stanvanheumen/ngx-storage` library to your project.
-No additional setup is required.
+If you want to save the user selected language you should add the `@stanvanheumen/ngx-storage` library to your project.
+No additional setup is required. The browser will remember the language you set last.
 
 ```bash
 yarn add @stanvanheumen/ngx-storage
@@ -35,16 +38,11 @@ Add the `NgxTranslationsModule` to your imports array in your `CoreModule`.
 To receive the provider call the `forRoot()` method.
 
 ```typescript
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
 import {NgxStorageModule} from '@stanvanheumen/ngx-storage';
 import {NgxTranslationsModule} from '@stanvanheumen/ngx-translations';
 
-import {AppComponent} from './app.component';
-
 @NgModule({
   imports: [
-      BrowserModule,
       NgxStorageModule.forRoot(), // Optional
       NgxTranslationsModule.forRoot({
           production: false,
@@ -73,9 +71,7 @@ import {AppComponent} from './app.component';
               }
           ]
       })
-  ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  ]
 })
 export class AppModule {}
 ```
