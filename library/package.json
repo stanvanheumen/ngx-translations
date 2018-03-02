@@ -1,6 +1,6 @@
 {
     "name": "@stanvanheumen/ngx-translations",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": "MIT",
     "description": "A simple library that allows you use multiple languages in your Angular 5+ app.",
     "author": {
@@ -17,9 +17,11 @@
         "url": "https://github.com/stanvanheumen/ngx-translations.git/issues"
     },
     "homepage": "https://github.com/stanvanheumen/ngx-translations#readme",
+    "dependencies": {
+        "@stanvanheumen/ngx-storage": ">=1.0.0"
+    },
     "peerDependencies": {
         "@angular/common": ">=5.0.0",
-        "@angular/core": ">=5.0.0",
-        "@stanvanheumen/ngx-storage": ">=1.0.0"
+        "@angular/core": ">=5.0.0"
     }
 }

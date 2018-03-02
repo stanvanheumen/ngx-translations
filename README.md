@@ -27,13 +27,6 @@ $ npm install @stanvanheumen/ngx-translations --save
 $ yarn add @stanvanheumen/ngx-translations
 ```
 
-If you want to save the user selected language you should add the `@stanvanheumen/ngx-storage` library to your project.
-No additional setup is required. The browser will remember the language you set last.
-
-```bash
-yarn add @stanvanheumen/ngx-storage
-```
-
 ## Setup
 
 Add the `NgxTranslationsModule` to your imports array in your `CoreModule`. 
