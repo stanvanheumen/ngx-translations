@@ -114,7 +114,7 @@ export class TranslationsService {
             if (data[word]) {
                 word = data[word];
 
-                if (words[1] && words[1].split(',').indexOf('keep') === -1) {
+                if (words.length === 1 || (words[1] && words[1].split(',').indexOf('keep') === -1)) {
                     word = this.translate(word);
                 }
             }
