@@ -17,6 +17,8 @@ A simple library that allows you use multiple languages in your Angular 5+ app.
 
 ## Installation
 
+To use ngx-storage in your project install it via `npm` or `yarn`:
+
 ```bash
 $ npm install @stanvanheumen/ngx-translations --save
 
