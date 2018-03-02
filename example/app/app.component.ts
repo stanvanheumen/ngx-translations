@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
 
     onLanguageChange(value) {
         this.translate.use(value);
+        if (window && window.location) {
+            window.location.reload();
+        }
     }
 
 }

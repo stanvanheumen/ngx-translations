@@ -1,6 +1,6 @@
 {
     "name": "@stanvanheumen/ngx-translations",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "license": "MIT",
     "description": "A simple library that allows you use multiple languages in your Angular 5+ app.",
     "author": {
