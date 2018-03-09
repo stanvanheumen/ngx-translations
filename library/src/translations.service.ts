@@ -18,7 +18,7 @@ export class TranslationsService {
     // The current language.
     private currentLanguage$ = new BehaviorSubject<string>(null);
 
-    constructor(@Optional() private storage: StorageService,
+    constructor(private storage: StorageService,
                 @Optional() private config: TranslationsConfig) {
         // Retrieve the dictionary from the config.
         if (!this.config) {
