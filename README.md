@@ -13,7 +13,7 @@ A simple library that allows you use multiple languages in your Angular 5+ app.
 
 ## Demo
 
-[Click here to play with the example](https://stackblitz.com/github/stanvanheumen/ngx-translations)
+[Click here to play with the example!](https://stackblitz.com/github/stanvanheumen/ngx-translations)
 
 ## Installation
 
